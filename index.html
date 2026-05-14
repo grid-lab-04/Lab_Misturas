@@ -460,7 +460,7 @@
         const contatosResponsaveis = {
             "CARACTERIZAÇÃO DE MATERIAIS": "5585996467818", 
             "USO DO LABORATÓRIO PARA AULAS": "5585996467818", 
-            "ENSAIOS MECÂNICOS": "5585988179510" 
+            "ENSAIOS MECÂNICOS": "5585988075403" 
         };
 
         const cardsCaracterizacao = [
@@ -895,10 +895,13 @@
                 horas: horas
             }];
 
+            const abaDestino = categoriaAtiva === 'ENSAIOS MECÂNICOS' ? 'Prensas' : 'Reservas';
+
             const payload = {
                 action: 'reservar_lote',
                 id: ID_UNICO,
                 senha: senha,
+                aba: abaDestino,
                 usuario: { nome, email, orientador, projeto },
                 reservas: reservas,
                 data: dataUso
