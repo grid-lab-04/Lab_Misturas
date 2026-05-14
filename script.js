@@ -80,10 +80,15 @@ async function reservarSelecionados() {
         .map(ch => ch.split('-').pop())
         .sort();
 
+
+    // Ensaios Mecânicos → aba "Prensas"; Caracterização e Aulas → aba "Reservas"
+    const abaDestino = categoriaAtiva === 'ENSAIOS MECÂNICOS' ? 'Prensas' : 'Reservas';
+
     const payload = {
         action: 'reservar_lote',
         id: ID_UNICO,
         senha: senha,
+        aba: abaDestino,
         usuario: {
             nome,
             email,
