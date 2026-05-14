@@ -2,7 +2,7 @@
  * FRONTEND COMPLETO - script.js
  */
 
-const URL_API = "https://script.google.com/macros/s/AKfycbwLpm7vxFHibdzH0ALxmbIYsvAmuFWb_TNGW711KysKrvkYo2vvIpTuYU4d61vyQirVXA/exec";
+const URL_API = "https://script.google.com/macros/s/AKfycbwUbo0G2kzMN_IORkbAEJvRh4YVyZ5Wva5U45CmvcOpyaouDiyv4WTbjBkfoKhXZdJIZA/exec";
 
 const corpoAgenda = document.getElementById('corpo-agenda');
 const seletorData = document.getElementById('data');
