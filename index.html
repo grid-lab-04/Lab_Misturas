@@ -1091,10 +1091,24 @@
 
         function dashGetCat(chave) {
             if (chave.includes('-[AULA]-')) return 'USO DO LABORATÓRIO PARA AULAS';
-            for (const [k,v] of Object.entries(dashCatMap)) { if (chave.includes('-'+k+'-')) return v; }
-            return 'Outro';
+            for (const [k,v] of Object.entries(dashCatMap)) {
+                if (chave.includes('-' + k + '-') || chave.endsWith('-' + k)) return v;
+            }
+            // Fallback: tenta extrair ensaio e buscar no mapa
+            const ensaio = dashGetEnsaio(chave);
+            return dashCatMap[ensaio] || 'Outro';
         }
         function dashGetEnsaio(chave) {
+            // Tenta fazer match com os nomes conhecidos primeiro (mais confiável)
+            for (const k of Object.keys(dashCatMap)) {
+                if (chave.includes('-' + k + '-') || chave.endsWith('-' + k)) return k;
+            }
+            // Aulas: extrai nome entre terceiro hífen e o penúltimo segmento
+            if (chave.includes('-[AULA]-')) {
+                const m = chave.match(/^\d{4}-\d{2}-\d{2}-(.+)-\d{2}:\d{2}$/);
+                return m ? m[1] : '[AULA]';
+            }
+            // Fallback genérico
             const p = chave.split('-');
             return p.slice(3, p.length - 1).join('-');
         }
